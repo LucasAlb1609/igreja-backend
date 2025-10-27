@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Carta Convite - {{ nome_do_evento }}</title>
+    <style>
+        @page {
+            size: A4;
+            margin: 0;
+        }
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            line-height: 1.6;
+            font-size: 12pt;
+            margin: 0;
+            width: 21cm;
+            height: 29.7cm;
+            background-image: url("{{ background_url }}");
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            position: relative;
+        }
+        .content-wrapper {
+            position: absolute;
+            top: 5cm; /* Aumentado para acomodar o cabeçalho maior */
+            left: 2.5cm;
+            right: 2.5cm;
+            bottom: 4cm; /* Aumentado para acomodar o rodapé maior */
+            text-align: justify;
+        }
+        .header-container {
+            position: absolute;
+            top: 1.5cm;
+            left: 2.5cm;
+            right: 2.5cm;
+            text-align: center;
+            border-bottom: 1px solid #000;
+            padding-bottom: 10px;
+        }
+        .header-container h1 {
+            font-size: 21pt; /* Aumentado 50% (14pt * 1.5 = 21pt) */
+            margin: 0;
+            font-weight: bold;
+        }
+        .header-container p {
+            font-size: 16.5pt; /* Aumentado 50% (11pt * 1.5 = 16.5pt) */
+            margin: 5px 0;
+        }
+        .invite-header { text-align: center; margin-bottom: 40px; }
+        .invite-header h2 { margin-bottom: 5px; font-size: 14pt; }
+        .invite-header p { margin-top: 0; margin-bottom: 40px; }
+        .recipient { margin-bottom: 30px; font-weight: bold; }
+        .content { margin-bottom: 30px; }
+        .signature { margin-top: 60px; text-align: center; }
+        .bold { font-weight: bold; } 
+        .italic { font-style: italic; } 
+        .indent { margin-left: 40px; }
+        .footer-container {
+            position: absolute;
+            bottom: 0.5cm;
+            left: 2.5cm;
+            right: 2.5cm;
+            text-align: right; /* Alinhado à direita */
+            font-size: 12pt;
+            padding: 15px 0;
+            border-top: 1px solid #000;
+        }
+        .footer-text {
+            margin: 8px 0;
+        }
+    </style>
+</head>
+<body>
+    
+    <!-- CABEÇALHO COM FONTES MAIORES -->
+    <div class="header-container">
+        <h1>2ª Igreja Batista em Casa Amarela</h1>
+        <p>Pr. João Gomes da Silva</p>
+        <p>Pr. Romildo Silva de Melo</p>
+    </div>
+    
+    <div class="content-wrapper">
+        <div class="invite-header">
+            <h2>CARTA CONVITE</h2>
+            <p>Recife, {{ data_emissao|date:"d \d\e F \d\e Y" }}.</p>
+        </div>
+        
+        <div class="recipient">
+            A<br> Congregação em {{ nome_congregacao }}<br>
+            {% if nome_diretor %}Diretor(a): {{ nome_diretor }}{% endif %}
+        </div>
+        
+        <div class="content">
+            <p>
+                A 2ª Igreja Batista em Casa Amarela, juntamente com seu Pastor Presidente,
+                tem a honra de convidar a amada congregação para participar do(a)
+                <span class="bold">{{ nome_do_evento|upper }}</span>
+                a realizar-se no período de
+                <span class="bold">{{ data_inicio_formatada }} a {{ data_fim_formatada }}</span>,
+                a partir das <span class="bold">{{ horario }}</span> no templo da nossa igreja.
+            </p>
+            {% if tema %}<p> Com o tema: <span class="bold">{{ tema|upper }}</span> </p>{% endif %}
+            {% if versiculo_base and referencia_biblica %}<p class="indent italic bold"> "{{ versiculo_base }}" ({{ referencia_biblica }}) </p>{% endif %}
+            <p> <span class="bold">Preletores:</span><br> {% for preletor in preletores %} {{ preletor }}<br> {% empty %} (A definir)<br> {% endfor %} </p>
+            <p> Atenciosamente, </p>
+        </div>
+        
+        <div class="signature">
+            ____________________________<br> <span class="bold">{{ nome_pastor_presidente|upper }}</span><br> Pastor Presidente
+        </div>
+    </div>
+    
+    <!-- RODAPÉ COM FONTE DOBRADA E ALINHADO À DIREITA -->
+    <div class="footer-container">
+        <p class="footer-text"><strong>Rua Santa Izabel, 425 | Recife - PE</strong></p>
+        <p class="footer-text"><strong>CEP: 52070-240</strong></p>
+        <p class="footer-text"><strong>CNPJ: 24.131.120/0001-96</strong></p>
+        <p class="footer-text"><strong>Fone: (81) 3268-3304</strong></p>
+        <p class="footer-text"><strong>www.2ibca.org.br</strong></p>
+    </div>
+</body>
+</html>

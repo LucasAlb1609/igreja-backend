@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Certificado - {{ nome_curso }}</title>
+    <style>
+        @page { size: A4 landscape; margin: 0; }
+        body { margin: 0; font-family: 'Times New Roman'; }
+        .certificado-container {
+            position: relative;
+            width: 29.7cm; height: 21cm;
+            background-image: url("{{ certificado_url }}");
+            background-size: 100% 100%;
+        }
+        .texto-dinamico { position: absolute; text-align: center; }
+        #nome-aluno { top: 6cm; left: 2cm; width: 25cm; font-size: 24pt; font-weight: bold; }
+        #nome-curso { top: 8cm; left: 2cm; width: 25cm; font-size: 18pt; }
+        #texto-conclusao { top: 10cm; left: 2cm; width: 25cm; font-size: 14pt; }
+    </style>
+</head>
+<body>
+    <div class="certificado-container">
+        <div id="nome-aluno" class="texto-dinamico">{{ nome_aluno }}</div>
+        <div id="nome-curso" class="texto-dinamico">{{ nome_curso }}</div>
+        <div id="texto-conclusao" class="texto-dinamico">{{ texto_conclusao }}</div>
+        <!-- Adicione mais campos conforme configurado no admin -->
+    </div>
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Certificado de Batismo - {{ usuario.nome_completo }}</title>
+    <style>
+        @page {
+            size: A4 landscape; /* Define a página como paisagem */
+            margin: 0;
+        }
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            margin: 0;
+            padding: 0;
+        }
+        .certificado-container {
+            position: relative;
+            width: 29.7cm; /* Largura A4 paisagem */
+            height: 21cm; /* Altura A4 paisagem */
+            /* Caminho para a imagem do certificado */
+            background-image: url("{{ certificado_url }}");
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+        }
+        .texto-dinamico {
+            position: absolute;
+            width: 100%;
+            text-align: center;
+            font-size: 20pt; /* Tamanho da fonte (ajuste conforme necessário) */
+            font-weight: bold;
+            color: #000;
+        }
+        
+        /* --- AJUSTE AS COORDENADAS ABAIXO --- */
+        /* Estas coordenadas (top, left) são um chute inicial. 
+           Vamos precisar ajustá-las para alinhar com o seu JPG. */
+
+        #nome-batizado {
+            top: 6.7cm; /* Distância do topo */
+            left: 2cm; /* Distância da esquerda */
+            width: 19cm; /* Largura da área do nome */
+            text-align: center;
+            font-size: 22pt;
+        }
+        #data-dia {
+            top: 10.8cm;
+            left: 9.4cm;
+            width: 2cm;
+            text-align: center;
+        }
+        #data-mes {
+            top: 10.9cm;
+            left: 14.5cm;
+            width: 3.5cm;
+            text-align: center;
+        }
+        #data-ano {
+            top: 11cm;
+            left: 21cm;
+            width: 2cm;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="certificado-container">
+        <div id="nome-batizado" class="texto-dinamico">
+            {{ usuario.nome_completo }}
+        </div>
+        
+        <div id="data-dia" class="texto-dinamico">{{ data_batismo_dia }}</div>
+        <div id="data-mes" class="texto-dinamico">{{ data_batismo_mes }}</div>
+        <div id="data-ano" class="texto-dinamico">{{ data_batismo_ano }}</div>
+    </div>
+</body>
+</html>
