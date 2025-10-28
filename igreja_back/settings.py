@@ -154,9 +154,9 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",
+    "https://igreja-frontend.onrender.com",
     "http://localhost:5173",
-    "https://2ibca.org.onrender.com",  # ← ATUALIZE DEPOIS
+    "http://127.0.0.1:5173",
 ]
 
 AUTH_USER_MODEL = 'usuarios.User'
@@ -179,3 +179,4 @@ if not DEBUG:
     SECURE_BROWSER_XSS_FILTER = True
 
     SECURE_CONTENT_TYPE_NOSNIFF = True
+
